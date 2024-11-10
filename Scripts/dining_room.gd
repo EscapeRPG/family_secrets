@@ -1,47 +1,49 @@
 extends Node2D
 
-var porteCuisine = false
-var fenetre = false
-var oui
-var non
+@onready var bastian: CharacterBody2D = $Bastian
+@onready var bastianAnimation: AnimatedSprite2D = $Bastian/Animation
+@onready var indice: Sprite2D = $Bastian/%Indice
+
+var porteCuisine: bool = false
+var fenetre: bool = false
 
 func _ready() -> void:
 	if Globals.previousLocation == "hall":
-		$Bastian.position = Vector2(518, 240)
-		$Bastian/AnimatedSprite2D.play("idleg")
+		bastian.position = Vector2(518, 240)
+		bastianAnimation.play("idleg")
 	else:
-		$Bastian.position = Vector2(174, 152)
-		$Bastian/AnimatedSprite2D.play("idled")
+		bastian.position = Vector2(174, 152)
+		bastianAnimation.play("idled")
 		
 	Globals.previousLocation = "diningRoom"
 
 func _process(_delta: float) -> void:
-	if fenetre == true && Globals.left == false: $Bastian/%Indice.visible = false
-	elif fenetre == true: $Bastian/%Indice.visible = true
+	if fenetre == true && Globals.left == false: indice.visible = false
+	elif fenetre == true: indice.visible = true
 	
-	if porteCuisine == true && Globals.top == false: $Bastian/%Indice.visible = false
-	elif porteCuisine == true : $Bastian/%Indice.visible = true
+	if porteCuisine == true && Globals.top == false: indice.visible = false
+	elif porteCuisine == true : indice.visible = true
 	
-	if Input.is_action_just_pressed("Interaction") && $Bastian/%Indice.visible == true:
+	if Input.is_action_just_pressed("Interaction") && indice.visible == true:
 		if porteCuisine == true: print("cuisine")
 		if fenetre == true: $Control.visible = true
 
 func _on_porte_cuisine_body_entered(body: Node2D) -> void:
-	if body == $Bastian:
-		$Bastian/%Indice.visible = true
+	if body == bastian:
+		indice.visible = true
 		porteCuisine = true
 
 func _on_porte_cuisine_body_exited(_body: Node2D) -> void:
-	$Bastian/%Indice.visible = false
+	indice.visible = false
 	porteCuisine = false
 
 func _on_fenetre_body_entered(body: Node2D) -> void:
-	if body == $Bastian && Globals.left == true:
-		$Bastian/%Indice.visible = true
+	if body == bastian:
+		indice.visible = true
 		fenetre = true
 
 func _on_fenetre_body_exited(_body: Node2D) -> void:
-	$Bastian/%Indice.visible = false
+	indice.visible = false
 	fenetre = false
 
 func _on_button_pressed() -> void:

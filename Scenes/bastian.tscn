@@ -364,7 +364,7 @@ position = Vector2(0, 7.5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_uem8y")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Animation" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, -41.5)
 sprite_frames = SubResource("SpriteFrames_22qg7")
