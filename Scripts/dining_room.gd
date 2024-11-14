@@ -24,7 +24,7 @@ func _process(_delta: float) -> void:
 	if porteCuisine == true && Globals.top == false: indice.visible = false
 	elif porteCuisine == true : indice.visible = true
 	
-	if Input.is_action_just_pressed("Interaction") && indice.visible == true:
+	if Input.is_action_just_pressed("interaction") && indice.visible == true:
 		if porteCuisine == true: print("cuisine")
 		if fenetre == true: $Control.visible = true
 

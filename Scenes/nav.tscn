@@ -1,0 +1,255 @@
+[gd_scene load_steps=22 format=3 uid="uid://cpuue2w0pfrd7"]
+
+[ext_resource type="Texture2D" uid="uid://b1ht7gj7twt0r" path="res://Assets/UI/nav_mini.png" id="1_5ve0y"]
+[ext_resource type="Texture2D" uid="uid://cpjnjtugquewr" path="res://Assets/UI/nav_mini_normal.png" id="1_283fc"]
+[ext_resource type="Script" path="res://Scripts/nav.gd" id="1_hqqay"]
+[ext_resource type="Theme" uid="uid://bo7i1yk8adk1i" path="res://Themes/nav_buttons.tres" id="2_b0w1y"]
+[ext_resource type="Texture2D" uid="uid://bneq3x77oemsm" path="res://Assets/UI/nav_normal.png" id="4_qrxok"]
+[ext_resource type="Texture2D" uid="uid://8cx42l70s6f0" path="res://Assets/UI/portrait.png" id="5_8pvsd"]
+[ext_resource type="Texture2D" uid="uid://dmkvp85so2b0d" path="res://Assets/UI/buttons_holder.png" id="6_khspi"]
+[ext_resource type="Texture2D" uid="uid://crpgo466b0ak1" path="res://Assets/UI/icon_notes_normal.png" id="7_d3egv"]
+[ext_resource type="Texture2D" uid="uid://c5lrfrfdfp60i" path="res://Assets/UI/icon_docs_normal.png" id="8_bam8p"]
+[ext_resource type="Texture2D" uid="uid://dfioqe8sqa6x3" path="res://Assets/UI/icon_inventaire_normal.png" id="9_u6rk4"]
+[ext_resource type="Texture2D" uid="uid://dcy18wckob73f" path="res://Assets/UI/icon_map_normal.png" id="10_bxfu7"]
+[ext_resource type="Texture2D" uid="uid://cfxos5jnrkjeg" path="res://Assets/UI/nav_icon_normal.png" id="11_cjay4"]
+[ext_resource type="Texture2D" uid="uid://brvbrqa6chedq" path="res://Assets/UI/nav_window.png" id="13_aqqeu"]
+[ext_resource type="Texture2D" uid="uid://fsu3dvx7u4rq" path="res://Assets/UI/icon_window_normal.png" id="14_jmlb6"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fa5ey"]
+content_margin_right = 1.0
+texture = ExtResource("1_5ve0y")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qn7in"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f7tyq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gbdl5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g7sh6"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v5ah7"]
+content_margin_right = 5.0
+texture = ExtResource("4_qrxok")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ay4bb"]
+content_margin_bottom = 5.0
+texture = ExtResource("13_aqqeu")
+
+[node name="Nav" type="Control"]
+z_index = 1
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("2_b0w1y")
+script = ExtResource("1_hqqay")
+
+[node name="NavMini" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -15.5
+offset_right = 15.0
+offset_bottom = 15.5
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_fa5ey")
+
+[node name="NavMiniBouton" type="Button" parent="NavMini"]
+layout_mode = 2
+theme = ExtResource("2_b0w1y")
+theme_override_colors/icon_normal_color = Color(0.933333, 0.611765, 0.192157, 1)
+theme_override_colors/icon_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_hover_color = Color(0.560784, 0.368627, 0.113725, 1)
+theme_override_colors/icon_hover_pressed_color = Color(0.560784, 0.368627, 0.113725, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qn7in")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_f7tyq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gbdl5")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_g7sh6")
+icon = ExtResource("1_283fc")
+icon_alignment = 1
+
+[node name="NavPleine" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -101.0
+offset_top = -180.0
+offset_bottom = 180.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_v5ah7")
+
+[node name="MarginContainer" type="MarginContainer" parent="NavPleine"]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 18
+
+[node name="Elements" type="VBoxContainer" parent="NavPleine/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Portrait" type="TextureRect" parent="NavPleine/MarginContainer/Elements"]
+layout_mode = 2
+texture = ExtResource("5_8pvsd")
+
+[node name="Boutons" type="TextureRect" parent="NavPleine/MarginContainer/Elements"]
+layout_mode = 2
+texture = ExtResource("6_khspi")
+stretch_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NavPleine/MarginContainer/Elements/Boutons"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.5
+offset_top = -88.5
+offset_right = 15.5
+offset_bottom = 88.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="NotesBouton" type="Button" parent="NavPleine/MarginContainer/Elements/Boutons/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_b0w1y")
+icon = ExtResource("7_d3egv")
+
+[node name="DocsBouton" type="Button" parent="NavPleine/MarginContainer/Elements/Boutons/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_b0w1y")
+icon = ExtResource("8_bam8p")
+
+[node name="InventaireBouton" type="Button" parent="NavPleine/MarginContainer/Elements/Boutons/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_b0w1y")
+icon = ExtResource("9_u6rk4")
+
+[node name="MapBouton" type="Button" parent="NavPleine/MarginContainer/Elements/Boutons/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_b0w1y")
+icon = ExtResource("10_bxfu7")
+
+[node name="NavPleineBouton" type="Button" parent="NavPleine"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme = ExtResource("2_b0w1y")
+icon = ExtResource("11_cjay4")
+
+[node name="NavWindow" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -217.0
+offset_top = 180.0
+offset_right = 217.0
+offset_bottom = 527.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_ay4bb")
+
+[node name="Elements" type="MarginContainer" parent="NavWindow"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 19
+
+[node name="Notes" type="FlowContainer" parent="NavWindow/Elements"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+vertical = true
+
+[node name="Label" type="Label" parent="NavWindow/Elements/Notes"]
+layout_mode = 2
+text = "Pellington"
+
+[node name="Documents" type="HBoxContainer" parent="NavWindow/Elements"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Titres" type="ScrollContainer" parent="NavWindow/Elements/Documents"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NavWindow/Elements/Documents/Titres"]
+layout_mode = 2
+
+[node name="Doc1" type="Button" parent="NavWindow/Elements/Documents/Titres/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "???"
+alignment = 0
+
+[node name="Doc2" type="Button" parent="NavWindow/Elements/Documents/Titres/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "???"
+alignment = 0
+
+[node name="Doc3" type="Button" parent="NavWindow/Elements/Documents/Titres/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "???"
+alignment = 0
+
+[node name="Lecture" type="ScrollContainer" parent="NavWindow/Elements/Documents"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(253, 0)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="NavWindow/Elements/Documents/Lecture"]
+custom_minimum_size = Vector2(246, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="NavWindow/Elements/Documents/Lecture/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(226, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+autowrap_mode = 2
+
+[node name="NavWindowBouton" type="Button" parent="NavWindow"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+icon = ExtResource("14_jmlb6")
+
+[connection signal="pressed" from="NavMini/NavMiniBouton" to="." method="_on_nav_mini_bouton_pressed"]
+[connection signal="pressed" from="NavPleine/MarginContainer/Elements/Boutons/VBoxContainer/NotesBouton" to="." method="_on_notes_bouton_pressed"]
+[connection signal="pressed" from="NavPleine/MarginContainer/Elements/Boutons/VBoxContainer/DocsBouton" to="." method="_on_docs_bouton_pressed"]
+[connection signal="pressed" from="NavPleine/MarginContainer/Elements/Boutons/VBoxContainer/InventaireBouton" to="." method="_on_inventaire_bouton_pressed"]
+[connection signal="pressed" from="NavPleine/MarginContainer/Elements/Boutons/VBoxContainer/MapBouton" to="." method="_on_map_bouton_pressed"]
+[connection signal="pressed" from="NavPleine/NavPleineBouton" to="." method="_on_nav_pleine_bouton_pressed"]
+[connection signal="pressed" from="NavWindow/Elements/Documents/Titres/VBoxContainer/Doc1" to="." method="_on_doc_1_pressed"]
+[connection signal="pressed" from="NavWindow/Elements/Documents/Titres/VBoxContainer/Doc2" to="." method="_on_doc_2_pressed"]
+[connection signal="pressed" from="NavWindow/Elements/Documents/Titres/VBoxContainer/Doc3" to="." method="_on_doc_3_pressed"]
+[connection signal="pressed" from="NavWindow/NavWindowBouton" to="." method="_on_nav_window_bouton_pressed"]
