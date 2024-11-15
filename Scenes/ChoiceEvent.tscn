@@ -1,0 +1,114 @@
+[gd_scene load_steps=5 format=3 uid="uid://e25aj6msedyn"]
+
+[ext_resource type="Theme" uid="uid://bo7i1yk8adk1i" path="res://Themes/nav_buttons.tres" id="1_y1pri"]
+[ext_resource type="Script" path="res://Scripts/choice_event.gd" id="2_vnex4"]
+[ext_resource type="Texture2D" uid="uid://q2r2dq6j8mq7" path="res://Assets/UI/window.png" id="2_xlsp2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_33402"]
+
+[node name="ChoiceEvent" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_y1pri")
+script = ExtResource("2_vnex4")
+
+[node name="EventWindow" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -122.0
+offset_top = -41.0
+offset_right = 122.0
+offset_bottom = 41.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_y1pri")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_33402")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="EventWindow"]
+layout_mode = 2
+texture = ExtResource("2_xlsp2")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="EventWindow"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EventWindow/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Question" type="Label" parent="EventWindow/MarginContainer/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EventWindow/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="EventWindow/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+texture = ExtResource("2_xlsp2")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="Choix1" type="Button" parent="EventWindow/MarginContainer/VBoxContainer/HBoxContainer/NinePatchRect2"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -8.5
+offset_right = 50.0
+offset_bottom = 8.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Oui"
+
+[node name="NinePatchRect3" type="NinePatchRect" parent="EventWindow/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+texture = ExtResource("2_xlsp2")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="Choix2" type="Button" parent="EventWindow/MarginContainer/VBoxContainer/HBoxContainer/NinePatchRect3"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -8.5
+offset_right = 50.0
+offset_bottom = 8.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Non"
+
+[connection signal="pressed" from="EventWindow/MarginContainer/VBoxContainer/HBoxContainer/NinePatchRect2/Choix1" to="." method="_on_choix_1_pressed"]
+[connection signal="pressed" from="EventWindow/MarginContainer/VBoxContainer/HBoxContainer/NinePatchRect3/Choix2" to="." method="_on_choix_2_pressed"]

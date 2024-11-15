@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://chwe7faj6fgq8"
-path="res://.godot/imported/RideauBack3.png-42d63c970a3658a9bd162ab677bc941d.ctex"
+uid="uid://cwsri5qusjnxl"
+path="res://.godot/imported/Rideaux.png-b47e644707f6ad558e700ae03d168d37.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Manoir/DiningRoom/RideauBack3.png"
-dest_files=["res://.godot/imported/RideauBack3.png-42d63c970a3658a9bd162ab677bc941d.ctex"]
+source_file="res://Assets/Manoir/DiningRoom/Rideaux.png"
+dest_files=["res://.godot/imported/Rideaux.png-b47e644707f6ad558e700ae03d168d37.ctex"]
 
 [params]
 

@@ -3,20 +3,21 @@ extends Control
 @onready var nav_mini: PanelContainer = $NavMini
 @onready var nav_pleine: PanelContainer = $NavPleine
 @onready var nav_window: PanelContainer = $NavWindow
+
 var isNavOpened: bool
 var styleBoxTexture: StyleBoxTexture = StyleBoxTexture.new()
 
 func _process(_delta) -> void:
 	#Check if the player has found any document
-	if Globals.doc1 == true: %Doc1.text = "Journal de William - p.1"
+	if Globals.doc1: %Doc1.text = "Journal de William - p.1"
 	else: %Doc1.disabled = true
-	if Globals.doc2 == true: %Doc2.text = "Journal de William - p.2"
+	if Globals.doc2: %Doc2.text = "Journal de William - p.2"
 	else: %Doc2.disabled = true
-	if Globals.doc3 == true: %Doc3.text = "Journal de William - p.3"
+	if Globals.doc3: %Doc3.text = "Journal de William - p.3"
 	else: %Doc3.disabled = true
 	
 	if Input.is_action_just_pressed("navigation"):
-		if isNavOpened == false: _on_nav_mini_bouton_pressed()
+		if !isNavOpened: _on_nav_mini_bouton_pressed()
 		else: _on_nav_pleine_bouton_pressed()
 
 func unfocus():
@@ -82,16 +83,16 @@ func _on_map_bouton_pressed() -> void:
 
 
 func _on_doc_1_pressed() -> void:
-	if Globals.doc1 == true:
+	if Globals.doc1:
 		%Label.text = tr("JOURNAL_1")
 		
 		styleBoxTexture.texture = preload("res://Assets/UI/feuille.png")
 		%Lecture.add_theme_stylebox_override("panel", styleBoxTexture)
 
 func _on_doc_2_pressed() -> void:
-	if Globals.doc2 == true:
+	if Globals.doc2:
 		%Label.text = tr("JOURNAL_2")
 
 func _on_doc_3_pressed() -> void:
-	if Globals.doc3 == true:
+	if Globals.doc3:
 		%Label.text = tr("JOURNAL_3")

@@ -1,62 +1,13 @@
-[gd_scene load_steps=25 format=3 uid="uid://c1ol6fbevpt6j"]
+[gd_scene load_steps=20 format=3 uid="uid://c1ol6fbevpt6j"]
 
 [ext_resource type="Script" path="res://Scripts/dining_room.gd" id="1_4irug"]
 [ext_resource type="Texture2D" uid="uid://dpw6ovkmuaql5" path="res://Assets/Manoir/DiningRoom/Fond.png" id="1_ikro6"]
 [ext_resource type="PackedScene" uid="uid://co07lt5af6ilr" path="res://Scenes/bastian.tscn" id="2_3dxal"]
 [ext_resource type="Texture2D" uid="uid://k05v6cbj4p4o" path="res://Assets/Manoir/DiningRoom/Table.png" id="2_kdp8k"]
-[ext_resource type="PackedScene" uid="uid://cpuue2w0pfrd7" path="res://Scenes/nav.tscn" id="2_qndpv"]
-[ext_resource type="Texture2D" uid="uid://q2r2dq6j8mq7" path="res://Assets/UI/window.png" id="2_xjteu"]
-[ext_resource type="Theme" uid="uid://bo7i1yk8adk1i" path="res://Themes/nav_buttons.tres" id="3_yjv81"]
-[ext_resource type="Texture2D" uid="uid://b3683kg8uy184" path="res://Assets/Manoir/DiningRoom/RideauBack1.png" id="5_mi64i"]
-[ext_resource type="Texture2D" uid="uid://cxb0v5e5wqqvr" path="res://Assets/Manoir/DiningRoom/RideauBack2.png" id="6_y05qj"]
-[ext_resource type="Texture2D" uid="uid://chwe7faj6fgq8" path="res://Assets/Manoir/DiningRoom/RideauBack3.png" id="7_6xfv5"]
-[ext_resource type="Texture2D" uid="uid://ckeprflspnlvw" path="res://Assets/Manoir/DiningRoom/RideauFront1.png" id="8_et2i6"]
-[ext_resource type="Texture2D" uid="uid://cx1hj81abfqth" path="res://Assets/Manoir/DiningRoom/RideauFront2.png" id="9_bgbix"]
-[ext_resource type="Texture2D" uid="uid://cbiysh6xh30u3" path="res://Assets/Manoir/DiningRoom/RideauFront3.png" id="10_o6fvu"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mt6ir"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bsct6"]
-texture = ExtResource("2_xjteu")
-texture_margin_left = 3.0
-texture_margin_top = 3.0
-texture_margin_right = 3.0
-texture_margin_bottom = 3.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r7wjn"]
-texture = ExtResource("2_xjteu")
-texture_margin_left = 3.0
-texture_margin_top = 3.0
-texture_margin_right = 3.0
-texture_margin_bottom = 3.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1nx7f"]
-texture = ExtResource("2_xjteu")
-texture_margin_left = 3.0
-texture_margin_top = 3.0
-texture_margin_right = 3.0
-texture_margin_bottom = 3.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4k31p"]
-texture = ExtResource("2_xjteu")
-texture_margin_left = 3.0
-texture_margin_top = 3.0
-texture_margin_right = 3.0
-texture_margin_bottom = 3.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p6dtr"]
-texture = ExtResource("2_xjteu")
-texture_margin_left = 3.0
-texture_margin_top = 3.0
-texture_margin_right = 3.0
-texture_margin_bottom = 3.0
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ao721"]
-texture = ExtResource("2_xjteu")
-texture_margin_left = 6.0
-texture_margin_top = 6.0
-texture_margin_right = 6.0
-texture_margin_bottom = 6.0
+[ext_resource type="PackedScene" uid="uid://cpuue2w0pfrd7" path="res://Scenes/Nav.tscn" id="2_qndpv"]
+[ext_resource type="PackedScene" uid="uid://e25aj6msedyn" path="res://Scenes/ChoiceEvent.tscn" id="3_o3fc0"]
+[ext_resource type="PackedScene" uid="uid://ywm804xlns7c" path="res://Scenes/Dialogues.tscn" id="3_onx1o"]
+[ext_resource type="Texture2D" uid="uid://cwsri5qusjnxl" path="res://Assets/Manoir/DiningRoom/Rideaux.png" id="5_m1cym"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3ixed"]
 
@@ -68,6 +19,61 @@ size = Vector2(69, 9)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aro07"]
 size = Vector2(51, 74)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_if1li"]
+atlas = ExtResource("5_m1cym")
+region = Rect2(0, 0, 100, 332)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_isov7"]
+atlas = ExtResource("5_m1cym")
+region = Rect2(100, 0, 100, 332)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drafh"]
+atlas = ExtResource("5_m1cym")
+region = Rect2(200, 0, 100, 332)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n1vrw"]
+atlas = ExtResource("5_m1cym")
+region = Rect2(0, 340, 100, 340)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqslk"]
+atlas = ExtResource("5_m1cym")
+region = Rect2(100, 340, 100, 340)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lg12f"]
+atlas = ExtResource("5_m1cym")
+region = Rect2(200, 340, 100, 340)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nw4d5"]
+animations = [{
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_if1li")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_isov7")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_drafh")
+}],
+"loop": false,
+"name": &"FenetreBack",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_n1vrw")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_yqslk")
+}, {
+"duration": 0.1,
+"texture": SubResource("AtlasTexture_lg12f")
+}],
+"loop": false,
+"name": &"FenetreFront",
+"speed": 1.0
+}]
+
 [node name="DiningRoom" type="Node2D"]
 y_sort_enabled = true
 texture_filter = 1
@@ -76,88 +82,10 @@ script = ExtResource("1_4irug")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Nav" parent="CanvasLayer" instance=ExtResource("2_qndpv")]
-z_index = 10
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 640.0
-offset_bottom = 360.0
-grow_horizontal = 1
-grow_vertical = 1
 
-[node name="Control" type="Control" parent="."]
-z_index = 2
-layout_mode = 3
-anchors_preset = 0
-offset_right = 640.0
-offset_bottom = 360.0
-theme = ExtResource("3_yjv81")
-
-[node name="PanelContainer" type="PanelContainer" parent="Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -115.0
-offset_top = -35.0
-offset_right = 115.0
-offset_bottom = 36.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_mt6ir")
-
-[node name="Panel" type="NinePatchRect" parent="Control/PanelContainer"]
-layout_mode = 2
-texture = ExtResource("2_xjteu")
-patch_margin_left = 10
-patch_margin_top = 10
-patch_margin_right = 10
-patch_margin_bottom = 10
-
-[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="Label" type="Label" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 8
-text = "Fermer la fenêtre ?"
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="Button" type="Button" parent="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-theme_override_colors/font_focus_color = Color(0.933333, 0.611765, 0.192157, 1)
-theme_override_font_sizes/font_size = 12
-theme_override_styles/hover = SubResource("StyleBoxTexture_bsct6")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_r7wjn")
-theme_override_styles/normal = SubResource("StyleBoxTexture_1nx7f")
-text = "Oui"
-
-[node name="Button2" type="Button" parent="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-theme_override_colors/font_focus_color = Color(0.933333, 0.611765, 0.192157, 1)
-theme_override_font_sizes/font_size = 12
-theme_override_styles/hover = SubResource("StyleBoxTexture_4k31p")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_p6dtr")
-theme_override_styles/normal = SubResource("StyleBoxTexture_ao721")
-text = "Non"
+[node name="ChoiceEvent" parent="CanvasLayer" groups=["choice"] instance=ExtResource("3_o3fc0")]
+visible = false
+question = Array[String](["Voulez-vous fermer la fenêtre ?"])
 
 [node name="Fond" type="StaticBody2D" parent="."]
 
@@ -197,73 +125,58 @@ polygon = PackedVector2Array(199, 222, 199, 244, 206, 251, 206, 287, 236, 287, 2
 position = Vector2(173.5, 145.5)
 shape = SubResource("RectangleShape2D_o7rap")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="PorteCuisine"]
+
+[node name="Dialogues" parent="PorteCuisine/CanvasLayer" groups=["dialogue"] instance=ExtResource("3_onx1o")]
+visible = false
+character_dialogue = Array[String](["Bastian: Prout"])
+
 [node name="Fenetre" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fenetre"]
 position = Vector2(98.5, 252)
 shape = SubResource("RectangleShape2D_aro07")
 
-[node name="RideauBack1" type="StaticBody2D" parent="."]
-position = Vector2(93.5, 193)
+[node name="CanvasLayer" type="CanvasLayer" parent="Fenetre"]
 
-[node name="Sprite2D" type="Sprite2D" parent="RideauBack1"]
-position = Vector2(0, -86)
-texture = ExtResource("5_mi64i")
+[node name="Dialogues" parent="Fenetre/CanvasLayer" groups=["dialogue"] instance=ExtResource("3_onx1o")]
+process_mode = 3
+visible = false
+character_dialogue = Array[String](["fenetresam", "fenetresam2"])
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RideauBack1"]
-position = Vector2(-0.5, 8)
+[node name="FenetreBack" type="StaticBody2D" parent="."]
+position = Vector2(93, 192)
+
+[node name="FenetreAnimation" type="AnimatedSprite2D" parent="FenetreBack"]
+position = Vector2(0, 3)
+sprite_frames = SubResource("SpriteFrames_nw4d5")
+animation = &"FenetreBack"
+offset = Vector2(0, -35)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="FenetreBack"]
+position = Vector2(0, 9)
 polygon = PackedVector2Array(-20, 15, 21, -12, 21, -15, 18, -15, -20, 11)
 
-[node name="RideauBack2" type="Node2D" parent="."]
-visible = false
-position = Vector2(97, 193)
+[node name="FenetreFront" type="StaticBody2D" parent="."]
+position = Vector2(93, 302)
 
-[node name="Sprite2D" type="Sprite2D" parent="RideauBack2"]
-position = Vector2(0, -86)
-texture = ExtResource("6_y05qj")
+[node name="FenetreAnimation2" type="AnimatedSprite2D" parent="FenetreFront"]
+position = Vector2(0, -3)
+sprite_frames = SubResource("SpriteFrames_nw4d5")
+animation = &"FenetreFront"
+offset = Vector2(0, -135)
 
-[node name="RideauBack3" type="Node2D" parent="."]
-visible = false
-position = Vector2(93.5, 204)
-
-[node name="Sprite2D" type="Sprite2D" parent="RideauBack3"]
-position = Vector2(0, -86)
-texture = ExtResource("7_6xfv5")
-
-[node name="RideauFront1" type="StaticBody2D" parent="."]
-position = Vector2(93.5, 313)
-
-[node name="Sprite2D" type="Sprite2D" parent="RideauFront1"]
-position = Vector2(0, -145)
-texture = ExtResource("8_et2i6")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RideauFront1"]
-position = Vector2(-0.5, -43)
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="FenetreFront"]
+position = Vector2(0, -32)
 polygon = PackedVector2Array(-20, 25, 21, 53, 21, 48, -19, 20, -20, 21)
 
-[node name="RideauFront2" type="Node2D" parent="."]
-visible = false
-position = Vector2(97, 254)
-
-[node name="Sprite2D" type="Sprite2D" parent="RideauFront2"]
-position = Vector2(0, -86)
-texture = ExtResource("9_bgbix")
-
-[node name="RideauFront3" type="Node2D" parent="."]
-visible = false
-position = Vector2(97, 273)
-
-[node name="Sprite2D" type="Sprite2D" parent="RideauFront3"]
-position = Vector2(-3.5, -105)
-texture = ExtResource("10_o6fvu")
-
 [node name="Bastian" parent="." instance=ExtResource("2_3dxal")]
-position = Vector2(518, 243)
+position = Vector2(517, 254)
 
-[connection signal="pressed" from="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Control/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="choix_1" from="CanvasLayer/ChoiceEvent" to="." method="_on_choice_event_choix_1"]
+[connection signal="choix_2" from="CanvasLayer/ChoiceEvent" to="." method="_on_choice_event_choix_2"]
 [connection signal="body_entered" from="PorteCuisine" to="." method="_on_porte_cuisine_body_entered"]
 [connection signal="body_exited" from="PorteCuisine" to="." method="_on_porte_cuisine_body_exited"]
 [connection signal="body_entered" from="Fenetre" to="." method="_on_fenetre_body_entered"]
 [connection signal="body_exited" from="Fenetre" to="." method="_on_fenetre_body_exited"]
-[connection signal="input_event" from="Fenetre" to="." method="_on_porte_cuisine_input_event"]
+[connection signal="dialogue_finished" from="Fenetre/CanvasLayer/Dialogues" to="." method="_on_dialogues_dialogue_finished"]

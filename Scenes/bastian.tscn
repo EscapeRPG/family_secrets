@@ -368,9 +368,8 @@ shape = SubResource("CapsuleShape2D_uem8y")
 texture_filter = 1
 position = Vector2(0, -41.5)
 sprite_frames = SubResource("SpriteFrames_22qg7")
-animation = &"idleback"
+animation = &"idled"
 autoplay = "idleg"
-frame_progress = 0.719584
 
 [node name="Indice" type="Sprite2D" parent="."]
 unique_name_in_owner = true

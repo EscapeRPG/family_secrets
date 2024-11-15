@@ -1,0 +1,91 @@
+[gd_scene load_steps=7 format=3 uid="uid://ywm804xlns7c"]
+
+[ext_resource type="Theme" uid="uid://bo7i1yk8adk1i" path="res://Themes/nav_buttons.tres" id="1_eknx2"]
+[ext_resource type="Texture2D" uid="uid://8cx42l70s6f0" path="res://Assets/UI/portrait.png" id="1_fd2dj"]
+[ext_resource type="Texture2D" uid="uid://by3kuoy0423sm" path="res://Assets/UI/bulle.png" id="2_jns46"]
+[ext_resource type="Script" path="res://Scripts/dialogues.gd" id="2_yyds0"]
+[ext_resource type="Script" path="res://Scripts/dialogue.gd" id="4_vxrfd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a350t"]
+
+[node name="Dialogues" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_eknx2")
+script = ExtResource("2_yyds0")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -300.0
+offset_top = -222.0
+offset_right = 300.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_a350t")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_constants/margin_bottom = 10
+
+[node name="PortraitPNJ" type="TextureRect" parent="PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("1_fd2dj")
+stretch_mode = 2
+
+[node name="PortraitBastian" type="TextureRect" parent="PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+texture = ExtResource("1_fd2dj")
+stretch_mode = 2
+
+[node name="Bulle" type="TextureRect" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture = ExtResource("2_jns46")
+stretch_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/Bulle"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/Bulle/MarginContainer"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="PanelContainer/MarginContainer/Bulle/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "Bastian"
+script = ExtResource("4_vxrfd")
+
+[node name="Dialogue" type="RichTextLabel" parent="PanelContainer/MarginContainer/Bulle/MarginContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Placeholder text"
+fit_content = true
+visible_characters = 0
+visible_ratio = 0.0
