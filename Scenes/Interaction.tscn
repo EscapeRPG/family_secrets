@@ -48,5 +48,5 @@ theme_override_constants/margin_bottom = 10
 
 [node name="InteractionText" type="Label" parent="EventWindow/MarginContainer"]
 layout_mode = 2
-text = "Ceci est un test"
+text = "L'objet a bien été ajouté à l'inventaire !"
 horizontal_alignment = 1
