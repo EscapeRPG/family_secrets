@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://oy71th1ygrmh"]
+
+[ext_resource type="Texture2D" uid="uid://cs2qw2hw7m4ji" path="res://Assets/Exterieur/Cimetiere.png" id="1_b0aq5"]
+[ext_resource type="PackedScene" uid="uid://co07lt5af6ilr" path="res://Scenes/Bastian.tscn" id="2_wmvt3"]
+[ext_resource type="PackedScene" uid="uid://c21k1ayfoxxhf" path="res://Scenes/Pluie.tscn" id="3_7443r"]
+
+[node name="Cimetière" type="Node2D"]
+
+[node name="Cimetiere" type="Sprite2D" parent="."]
+position = Vector2(1920, 1440)
+texture = ExtResource("1_b0aq5")
+
+[node name="Bastian" parent="." instance=ExtResource("2_wmvt3")]
+position = Vector2(1201, 2168)
+
+[node name="Camera2D" type="Camera2D" parent="Bastian"]
+limit_left = 0
+limit_top = 0
+limit_right = 3840
+limit_bottom = 2880
+limit_smoothed = true
+position_smoothing_enabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Pluie" parent="CanvasLayer" instance=ExtResource("3_7443r")]

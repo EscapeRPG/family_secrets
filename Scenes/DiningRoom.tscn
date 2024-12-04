@@ -1,13 +1,34 @@
-[gd_scene load_steps=20 format=3 uid="uid://c1ol6fbevpt6j"]
+[gd_scene load_steps=33 format=3 uid="uid://c1ol6fbevpt6j"]
 
 [ext_resource type="Script" path="res://Scripts/dining_room.gd" id="1_4irug"]
 [ext_resource type="Texture2D" uid="uid://dpw6ovkmuaql5" path="res://Assets/Manoir/DiningRoom/Fond.png" id="1_ikro6"]
-[ext_resource type="PackedScene" uid="uid://co07lt5af6ilr" path="res://Scenes/bastian.tscn" id="2_3dxal"]
-[ext_resource type="Texture2D" uid="uid://k05v6cbj4p4o" path="res://Assets/Manoir/DiningRoom/Table.png" id="2_kdp8k"]
+[ext_resource type="PackedScene" uid="uid://co07lt5af6ilr" path="res://Scenes/Bastian.tscn" id="2_3dxal"]
+[ext_resource type="Texture2D" uid="uid://dbq8r3cxi86yx" path="res://Assets/Manoir/lights.png" id="2_5jm0y"]
+[ext_resource type="Texture2D" uid="uid://k05v6cbj4p4o" path="res://Assets/Manoir/DiningRoom/TableDiner.png" id="2_kdp8k"]
 [ext_resource type="PackedScene" uid="uid://cpuue2w0pfrd7" path="res://Scenes/Nav.tscn" id="2_qndpv"]
+[ext_resource type="PackedScene" uid="uid://dckmggdw0y4xe" path="res://Scenes/FlamesLight.tscn" id="2_vabaa"]
+[ext_resource type="PackedScene" uid="uid://b0wnrsx25d8aq" path="res://Scenes/MenuPause.tscn" id="3_dlvv8"]
 [ext_resource type="PackedScene" uid="uid://e25aj6msedyn" path="res://Scenes/ChoiceEvent.tscn" id="3_o3fc0"]
 [ext_resource type="PackedScene" uid="uid://ywm804xlns7c" path="res://Scenes/Dialogues.tscn" id="3_onx1o"]
+[ext_resource type="Texture2D" uid="uid://bngqeqsmraxph" path="res://Assets/Characters/flashlight.png" id="4_dufuk"]
+[ext_resource type="Texture2D" uid="uid://7c71ndpl7uvc" path="res://Assets/Manoir/DiningRoom/Mur.png" id="5_gr4f5"]
 [ext_resource type="Texture2D" uid="uid://cwsri5qusjnxl" path="res://Assets/Manoir/DiningRoom/Rideaux.png" id="5_m1cym"]
+[ext_resource type="Texture2D" uid="uid://b3ni5h6nid5jj" path="res://Assets/Manoir/DiningRoom/Empreintes.png" id="5_nkfer"]
+[ext_resource type="Texture2D" uid="uid://d3fb0ob71w87n" path="res://Assets/Manoir/DiningRoom/RideauOccluder.png" id="6_ki4a2"]
+[ext_resource type="PackedScene" uid="uid://dd10keab8jalu" path="res://Scenes/scene_transition.tscn" id="10_g783y"]
+[ext_resource type="PackedScene" uid="uid://dr2pcwty8bgwm" path="res://Scenes/NightFilter.tscn" id="10_k13ef"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_j6m4p"]
+polygon = PackedVector2Array(207, 285, 207, 285, 208, 285, 208, 286, 209, 286, 209, 287, 212, 287, 212, 286, 213, 286, 213, 285, 214, 285, 214, 282, 213, 282, 213, 281, 212, 281, 212, 280, 209, 280, 209, 281, 208, 281, 208, 282, 207, 282)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_432aj"]
+polygon = PackedVector2Array(236, 300, 236, 305, 241, 305, 241, 300)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_33pb4"]
+polygon = PackedVector2Array(208, 151, 208, 142, 139, 142, 139, 151, 139, 136, 138, 136, 138, 28, 209, 28, 209, 136, 208, 136)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_5g3dy"]
+polygon = PackedVector2Array(72, -1, 72, 70, 95, 70)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3ixed"]
 
@@ -79,13 +100,297 @@ y_sort_enabled = true
 texture_filter = 1
 script = ExtResource("1_4irug")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="NightLights" type="Node2D" parent="."]
 
-[node name="Nav" parent="CanvasLayer" instance=ExtResource("2_qndpv")]
+[node name="Occluders" type="Node2D" parent="NightLights"]
 
-[node name="ChoiceEvent" parent="CanvasLayer" groups=["choice"] instance=ExtResource("3_o3fc0")]
-visible = false
-question = Array[String](["Voulez-vous fermer la fenêtre ?"])
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="NightLights/Occluders"]
+occluder = SubResource("OccluderPolygon2D_j6m4p")
+
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="NightLights/Occluders"]
+position = Vector2(0, -57)
+occluder = SubResource("OccluderPolygon2D_j6m4p")
+
+[node name="LightOccluder2D4" type="LightOccluder2D" parent="NightLights/Occluders"]
+position = Vector2(199, -57)
+occluder = SubResource("OccluderPolygon2D_j6m4p")
+
+[node name="LightOccluder2D5" type="LightOccluder2D" parent="NightLights/Occluders"]
+position = Vector2(199, 0)
+occluder = SubResource("OccluderPolygon2D_j6m4p")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="NightLights/Occluders"]
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D6" type="LightOccluder2D" parent="NightLights/Occluders"]
+position = Vector2(0, -26)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D7" type="LightOccluder2D" parent="NightLights/Occluders"]
+position = Vector2(26, -26)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D8" type="LightOccluder2D" parent="NightLights/Occluders"]
+position = Vector2(26, 0)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D9" type="LightOccluder2D" parent="NightLights/Occluders"]
+position = Vector2(62, -8)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D10" type="LightOccluder2D" parent="NightLights/Occluders"]
+position = Vector2(62, -34)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D11" type="LightOccluder2D" parent="NightLights/Occluders"]
+position = Vector2(88, -34)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D12" type="LightOccluder2D" parent="NightLights/Occluders"]
+position = Vector2(88, -8)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D13" type="LightOccluder2D" parent="NightLights/Occluders"]
+position = Vector2(118, -34)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D14" type="LightOccluder2D" parent="NightLights/Occluders"]
+position = Vector2(118, -8)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D15" type="LightOccluder2D" parent="NightLights/Occluders"]
+position = Vector2(144, -34)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D16" type="LightOccluder2D" parent="NightLights/Occluders"]
+position = Vector2(144, -8)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D17" type="LightOccluder2D" parent="NightLights/Occluders"]
+position = Vector2(143, -67)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D18" type="LightOccluder2D" parent="NightLights/Occluders"]
+position = Vector2(143, -95)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D19" type="LightOccluder2D" parent="NightLights/Occluders"]
+position = Vector2(117, -95)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D20" type="LightOccluder2D" parent="NightLights/Occluders"]
+position = Vector2(117, -67)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D21" type="LightOccluder2D" parent="NightLights/Occluders"]
+position = Vector2(84, -70)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D22" type="LightOccluder2D" parent="NightLights/Occluders"]
+position = Vector2(84, -96)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D23" type="LightOccluder2D" parent="NightLights/Occluders"]
+position = Vector2(58, -70)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D24" type="LightOccluder2D" parent="NightLights/Occluders"]
+texture_filter = 1
+position = Vector2(58, -96)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D25" type="LightOccluder2D" parent="NightLights/Occluders"]
+position = Vector2(19, -69)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D26" type="LightOccluder2D" parent="NightLights/Occluders"]
+position = Vector2(19, -95)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D27" type="LightOccluder2D" parent="NightLights/Occluders"]
+position = Vector2(-7, -95)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D28" type="LightOccluder2D" parent="NightLights/Occluders"]
+position = Vector2(-7, -69)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D29" type="LightOccluder2D" parent="NightLights/Occluders"]
+occluder = SubResource("OccluderPolygon2D_33pb4")
+
+[node name="PointLight2D4" type="PointLight2D" parent="NightLights"]
+position = Vector2(332, 159)
+color = Color(1, 0.784358, 0.564524, 1)
+energy = 2.0
+blend_mode = 2
+shadow_enabled = true
+texture = ExtResource("2_5jm0y")
+offset = Vector2(0, -50)
+texture_scale = 2.34
+
+[node name="PointLight2D5" type="PointLight2D" parent="NightLights"]
+position = Vector2(332, 95)
+color = Color(1, 0.784358, 0.564524, 1)
+energy = 2.0
+blend_mode = 2
+range_item_cull_mask = 2
+texture = ExtResource("2_5jm0y")
+texture_scale = 2.34
+
+[node name="FlamesLight" parent="NightLights" instance=ExtResource("2_vabaa")]
+position = Vector2(238, 181)
+jitter_min_energy = 1.663
+
+[node name="FlamesLight2" parent="NightLights" instance=ExtResource("2_vabaa")]
+position = Vector2(311, 178)
+
+[node name="FlamesLight3" parent="NightLights" instance=ExtResource("2_vabaa")]
+position = Vector2(384, 181)
+jitter_min_energy = 1.663
+
+[node name="DayLights" type="Node2D" parent="."]
+
+[node name="Occluders" type="Node2D" parent="DayLights"]
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="DayLights/Occluders"]
+occluder = SubResource("OccluderPolygon2D_j6m4p")
+
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="DayLights/Occluders"]
+position = Vector2(0, -57)
+occluder = SubResource("OccluderPolygon2D_j6m4p")
+
+[node name="LightOccluder2D4" type="LightOccluder2D" parent="DayLights/Occluders"]
+position = Vector2(199, -57)
+occluder = SubResource("OccluderPolygon2D_j6m4p")
+
+[node name="LightOccluder2D5" type="LightOccluder2D" parent="DayLights/Occluders"]
+position = Vector2(199, 0)
+occluder = SubResource("OccluderPolygon2D_j6m4p")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="DayLights/Occluders"]
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D6" type="LightOccluder2D" parent="DayLights/Occluders"]
+position = Vector2(0, -26)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D7" type="LightOccluder2D" parent="DayLights/Occluders"]
+position = Vector2(26, -26)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D8" type="LightOccluder2D" parent="DayLights/Occluders"]
+position = Vector2(26, 0)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D9" type="LightOccluder2D" parent="DayLights/Occluders"]
+position = Vector2(62, -8)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D10" type="LightOccluder2D" parent="DayLights/Occluders"]
+position = Vector2(62, -34)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D11" type="LightOccluder2D" parent="DayLights/Occluders"]
+position = Vector2(88, -34)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D12" type="LightOccluder2D" parent="DayLights/Occluders"]
+position = Vector2(88, -8)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D13" type="LightOccluder2D" parent="DayLights/Occluders"]
+position = Vector2(118, -34)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D14" type="LightOccluder2D" parent="DayLights/Occluders"]
+position = Vector2(118, -8)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D15" type="LightOccluder2D" parent="DayLights/Occluders"]
+position = Vector2(144, -34)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D16" type="LightOccluder2D" parent="DayLights/Occluders"]
+position = Vector2(144, -8)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D17" type="LightOccluder2D" parent="DayLights/Occluders"]
+position = Vector2(143, -67)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D18" type="LightOccluder2D" parent="DayLights/Occluders"]
+position = Vector2(143, -95)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D19" type="LightOccluder2D" parent="DayLights/Occluders"]
+position = Vector2(117, -95)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D20" type="LightOccluder2D" parent="DayLights/Occluders"]
+position = Vector2(117, -67)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D21" type="LightOccluder2D" parent="DayLights/Occluders"]
+position = Vector2(84, -70)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D22" type="LightOccluder2D" parent="DayLights/Occluders"]
+position = Vector2(84, -96)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D23" type="LightOccluder2D" parent="DayLights/Occluders"]
+position = Vector2(58, -70)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D24" type="LightOccluder2D" parent="DayLights/Occluders"]
+texture_filter = 1
+position = Vector2(58, -96)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D25" type="LightOccluder2D" parent="DayLights/Occluders"]
+position = Vector2(19, -69)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D26" type="LightOccluder2D" parent="DayLights/Occluders"]
+position = Vector2(19, -95)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D27" type="LightOccluder2D" parent="DayLights/Occluders"]
+position = Vector2(-7, -95)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D28" type="LightOccluder2D" parent="DayLights/Occluders"]
+position = Vector2(-7, -69)
+occluder = SubResource("OccluderPolygon2D_432aj")
+
+[node name="LightOccluder2D29" type="LightOccluder2D" parent="DayLights/Occluders"]
+occluder = SubResource("OccluderPolygon2D_33pb4")
+
+[node name="LightOccluder2D30" type="LightOccluder2D" parent="DayLights/Occluders"]
+position = Vector2(1, 290)
+occluder = SubResource("OccluderPolygon2D_5g3dy")
+
+[node name="PointLight2D" type="PointLight2D" parent="DayLights"]
+position = Vector2(-785, 207)
+rotation = 0.198209
+scale = Vector2(-2.71508, 1.29594)
+color = Color(0, 0.541176, 0.952941, 0.635294)
+energy = 2.0
+shadow_enabled = true
+texture = ExtResource("4_dufuk")
+offset = Vector2(-300, -100)
+texture_scale = 4.02
+
+[node name="PointLight2D2" type="PointLight2D" parent="DayLights"]
+position = Vector2(-785, 207)
+rotation = 0.198209
+scale = Vector2(-2.71508, 1.29594)
+color = Color(0, 0.541176, 0.952941, 0.635294)
+energy = 2.0
+range_item_cull_mask = 2
+texture = ExtResource("4_dufuk")
+offset = Vector2(-300, -100)
+texture_scale = 4.02
 
 [node name="Fond" type="StaticBody2D" parent="."]
 
@@ -94,14 +399,29 @@ texture_filter = 1
 position = Vector2(320, 180)
 texture = ExtResource("1_ikro6")
 
+[node name="Mur" type="Sprite2D" parent="Fond"]
+light_mask = 2
+position = Vector2(73, 0)
+texture = ExtResource("5_gr4f5")
+centered = false
+
+[node name="RideauOccluder" type="Sprite2D" parent="Fond"]
+light_mask = 0
+position = Vector2(73, 2)
+texture = ExtResource("6_ki4a2")
+centered = false
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Fond"]
+visible = false
 polygon = PackedVector2Array(73, 0, 73, 151, 139, 151, 139, 142, 208, 142, 208, 151, 235, 151, 235, 181, 354, 181, 354, 151, 373, 151, 373, 156, 375, 161, 380, 167, 387, 173, 395, 174, 395, 175, 402, 175, 402, 174, 497, 174, 497, 175, 503, 175, 503, 174, 507, 174, 516, 170, 522, 162, 525, 156, 525, 151, 547, 151, 547, 223, 567, 223, 567, 274, 547, 274, 547, 360, 575, 360, 575, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fond"]
+visible = false
 position = Vector2(240, 361)
 shape = SubResource("WorldBoundaryShape2D_3ixed")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Fond"]
+visible = false
 position = Vector2(82, 192)
 rotation = 1.5708
 shape = SubResource("WorldBoundaryShape2D_o31ar")
@@ -111,13 +431,15 @@ texture_filter = 1
 position = Vector2(310, 214)
 
 [node name="Table2" type="Sprite2D" parent="Table"]
+light_mask = 2
 position = Vector2(0, 75)
 texture = ExtResource("2_kdp8k")
 offset = Vector2(0, -60)
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Table"]
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Table"]
+visible = false
 position = Vector2(-310, -214)
-polygon = PackedVector2Array(199, 222, 199, 244, 206, 251, 206, 287, 236, 287, 236, 305, 267, 305, 267, 287, 298, 287, 298, 297, 329, 297, 329, 287, 354, 287, 354, 297, 385, 297, 385, 287, 414, 287, 414, 251, 421, 244, 421, 222, 384, 222, 384, 213, 353, 213, 353, 222, 325, 222, 325, 213, 294, 213, 294, 222, 260, 222, 260, 213, 229, 213, 229, 222)
+polygon = PackedVector2Array(199, 222, 199, 244, 206, 251, 206, 287, 236, 287, 236, 305, 267, 305, 267, 287, 298, 287, 298, 297, 329, 297, 329, 287, 354, 287, 354, 297, 385, 297, 385, 287, 414, 287, 414, 251, 421, 244, 421, 222, 384, 222, 384, 205, 353, 205, 353, 222, 325, 222, 325, 202, 294, 202, 294, 222, 260, 222, 260, 205, 229, 205, 229, 222)
 
 [node name="PorteCuisine" type="Area2D" parent="."]
 
@@ -125,58 +447,85 @@ polygon = PackedVector2Array(199, 222, 199, 244, 206, 251, 206, 287, 236, 287, 2
 position = Vector2(173.5, 145.5)
 shape = SubResource("RectangleShape2D_o7rap")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="PorteCuisine"]
+[node name="Empreintes" type="Area2D" parent="."]
 
-[node name="Dialogues" parent="PorteCuisine/CanvasLayer" groups=["dialogue"] instance=ExtResource("3_onx1o")]
-visible = false
-character_dialogue = Array[String](["Bastian: Prout"])
+[node name="Sprite2D" type="Sprite2D" parent="Empreintes"]
+position = Vector2(83, 278)
+texture = ExtResource("5_nkfer")
+centered = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Empreintes"]
+polygon = PackedVector2Array(85, 278, 118, 280, 140, 285, 164, 287, 213, 288, 223, 287, 230, 282, 232, 282, 235, 317, 264, 330, 237, 337, 218, 319, 220, 300, 195, 303, 168, 301, 140, 299, 121, 294, 94, 291, 80, 289)
 
 [node name="Fenetre" type="Area2D" parent="."]
+y_sort_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Fenetre"]
 position = Vector2(98.5, 252)
 shape = SubResource("RectangleShape2D_aro07")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Fenetre"]
-
-[node name="Dialogues" parent="Fenetre/CanvasLayer" groups=["dialogue"] instance=ExtResource("3_onx1o")]
-process_mode = 3
-visible = false
-character_dialogue = Array[String](["fenetresam", "fenetresam2"])
-
-[node name="FenetreBack" type="StaticBody2D" parent="."]
+[node name="FenetreBack" type="StaticBody2D" parent="Fenetre"]
 position = Vector2(93, 192)
 
-[node name="FenetreAnimation" type="AnimatedSprite2D" parent="FenetreBack"]
+[node name="FenetreAnimation" type="AnimatedSprite2D" parent="Fenetre/FenetreBack"]
+light_mask = 2
 position = Vector2(0, 3)
 sprite_frames = SubResource("SpriteFrames_nw4d5")
 animation = &"FenetreBack"
 offset = Vector2(0, -35)
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="FenetreBack"]
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Fenetre/FenetreBack"]
 position = Vector2(0, 9)
 polygon = PackedVector2Array(-20, 15, 21, -12, 21, -15, 18, -15, -20, 11)
 
-[node name="FenetreFront" type="StaticBody2D" parent="."]
+[node name="FenetreFront" type="StaticBody2D" parent="Fenetre"]
 position = Vector2(93, 302)
 
-[node name="FenetreAnimation2" type="AnimatedSprite2D" parent="FenetreFront"]
+[node name="FenetreAnimation2" type="AnimatedSprite2D" parent="Fenetre/FenetreFront"]
+light_mask = 2
 position = Vector2(0, -3)
 sprite_frames = SubResource("SpriteFrames_nw4d5")
 animation = &"FenetreFront"
 offset = Vector2(0, -135)
 
-[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="FenetreFront"]
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Fenetre/FenetreFront"]
 position = Vector2(0, -32)
 polygon = PackedVector2Array(-20, 25, 21, 53, 21, 48, -19, 20, -20, 21)
 
 [node name="Bastian" parent="." instance=ExtResource("2_3dxal")]
-position = Vector2(517, 254)
+position = Vector2(171, 241)
 
-[connection signal="choix_1" from="CanvasLayer/ChoiceEvent" to="." method="_on_choice_event_choix_1"]
-[connection signal="choix_2" from="CanvasLayer/ChoiceEvent" to="." method="_on_choice_event_choix_2"]
+[node name="NightFilter" parent="." instance=ExtResource("10_k13ef")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="Nav" parent="CanvasLayer" instance=ExtResource("2_qndpv")]
+
+[node name="MenuPause" parent="CanvasLayer" instance=ExtResource("3_dlvv8")]
+
+[node name="SceneTransition" parent="CanvasLayer" instance=ExtResource("10_g783y")]
+
+[node name="ChoiceEventFenetre" parent="CanvasLayer" instance=ExtResource("3_o3fc0")]
+question = Array[String](["fenetrequestion"])
+boutonchoix1 = Array[String](["oui"])
+boutonchoix2 = Array[String](["non"])
+
+[node name="DialoguesFenetre" parent="CanvasLayer" groups=["dialogue"] instance=ExtResource("3_onx1o")]
+character_dialogue = Array[String](["fenetresam", "fenetresam2"])
+
+[node name="DialoguesCuisine" parent="CanvasLayer" groups=["dialogue"] instance=ExtResource("3_onx1o")]
+character_dialogue = Array[String](["Gaspard: Ça mène à la cuisine.", "Bastian: Je ne savais pas.", "Gaspard: Bah maintenant vous savez, alors oust !"])
+
+[node name="DialoguesEmpreintes" parent="CanvasLayer" groups=["dialogue"] instance=ExtResource("3_onx1o")]
+character_dialogue = Array[String](["empreintes", "empreintes2"])
+
 [connection signal="body_entered" from="PorteCuisine" to="." method="_on_porte_cuisine_body_entered"]
 [connection signal="body_exited" from="PorteCuisine" to="." method="_on_porte_cuisine_body_exited"]
+[connection signal="body_entered" from="Empreintes" to="." method="_on_empreintes_body_entered"]
+[connection signal="body_exited" from="Empreintes" to="." method="_on_empreintes_body_exited"]
 [connection signal="body_entered" from="Fenetre" to="." method="_on_fenetre_body_entered"]
 [connection signal="body_exited" from="Fenetre" to="." method="_on_fenetre_body_exited"]
-[connection signal="dialogue_finished" from="Fenetre/CanvasLayer/Dialogues" to="." method="_on_dialogues_dialogue_finished"]
+[connection signal="choix_1" from="CanvasLayer/ChoiceEventFenetre" to="." method="_on_choice_event_fenetre_choix_1"]
+[connection signal="choix_2" from="CanvasLayer/ChoiceEventFenetre" to="." method="_on_choice_event_fenetre_choix_2"]
+[connection signal="dialogue_finished" from="CanvasLayer/DialoguesFenetre" to="." method="_on_dialogues_fenetre_dialogue_finished"]

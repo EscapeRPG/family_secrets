@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://dr2pcwty8bgwm"]
+
+[node name="NightFilter" type="CanvasModulate"]
+color = Color(0, 0.266667, 0.976471, 1)

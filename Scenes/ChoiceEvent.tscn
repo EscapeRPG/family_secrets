@@ -6,7 +6,9 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_33402"]
 
-[node name="ChoiceEvent" type="Control"]
+[node name="ChoiceEvent" type="Control" groups=["choice"]]
+process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,6 +17,15 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_y1pri")
 script = ExtResource("2_vnex4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
 
 [node name="EventWindow" type="PanelContainer" parent="."]
 layout_mode = 1

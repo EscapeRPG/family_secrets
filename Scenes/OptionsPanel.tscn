@@ -1,0 +1,127 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbihrem38gbs0"]
+
+[ext_resource type="Texture2D" uid="uid://q2r2dq6j8mq7" path="res://Assets/UI/window.png" id="1_ookqa"]
+[ext_resource type="Theme" uid="uid://doou4cxtw0g4t" path="res://Themes/menu.tres" id="1_peuay"]
+[ext_resource type="Script" path="res://Scripts/options_panel.gd" id="2_w5ec7"]
+
+[node name="OptionsPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_peuay")
+script = ExtResource("2_w5ec7")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_ookqa")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/TextureRect/MarginContainer"]
+layout_mode = 2
+current_tab = 0
+
+[node name="Video" type="Control" parent="MarginContainer/TextureRect/MarginContainer/TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Audio" type="Control" parent="MarginContainer/TextureRect/MarginContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Controls" type="Control" parent="MarginContainer/TextureRect/MarginContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TextureRect/MarginContainer/TabContainer/Controls"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="ControlsLabel" type="Label" parent="MarginContainer/TextureRect/MarginContainer/TabContainer/Controls/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Langues" type="Control" parent="MarginContainer/TextureRect/MarginContainer/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TextureRect/MarginContainer/TabContainer/Langues"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -109.0
+offset_top = -29.0
+offset_right = 109.0
+offset_bottom = 29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 21
+
+[node name="Language" type="Label" parent="MarginContainer/TextureRect/MarginContainer/TabContainer/Langues/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Veuillez sélectionner votre langue"
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/TextureRect/MarginContainer/TabContainer/Langues/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+selected = 0
+item_count = 2
+popup/item_0/text = "Français"
+popup/item_0/id = 1
+popup/item_1/text = "English"
+popup/item_1/id = 1
+
+[node name="BackButton" type="Button" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "Back"
+
+[connection signal="item_selected" from="MarginContainer/TextureRect/MarginContainer/TabContainer/Langues/VBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="pressed" from="MarginContainer/BackButton" to="." method="_on_back_button_pressed"]

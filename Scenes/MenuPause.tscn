@@ -1,0 +1,91 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0wnrsx25d8aq"]
+
+[ext_resource type="Theme" uid="uid://doou4cxtw0g4t" path="res://Themes/menu.tres" id="1_iwhqa"]
+[ext_resource type="Texture2D" uid="uid://q2r2dq6j8mq7" path="res://Assets/UI/window.png" id="2_7q155"]
+[ext_resource type="Script" path="res://Scripts/menu_pause.gd" id="2_ijy4s"]
+[ext_resource type="PackedScene" uid="uid://bbihrem38gbs0" path="res://Scenes/OptionsPanel.tscn" id="4_4b02w"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0qkln"]
+bg_color = Color(0, 0, 0, 0.6)
+
+[node name="MenuPause" type="Control"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_iwhqa")
+script = ExtResource("2_ijy4s")
+
+[node name="Pause" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0qkln")
+
+[node name="MarginContainer" type="MarginContainer" parent="Pause"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 10
+
+[node name="TextureRect" type="TextureRect" parent="Pause/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_7q155")
+
+[node name="MarginContainer" type="MarginContainer" parent="Pause/MarginContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause/MarginContainer/TextureRect/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Reprendre" type="Button" parent="Pause/MarginContainer/TextureRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Reprendre"
+
+[node name="Sauvegarder" type="Button" parent="Pause/MarginContainer/TextureRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Sauvegarder"
+
+[node name="Charger" type="Button" parent="Pause/MarginContainer/TextureRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Charger"
+
+[node name="Options" type="Button" parent="Pause/MarginContainer/TextureRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="Quitter" type="Button" parent="Pause/MarginContainer/TextureRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quitter"
+
+[node name="OptionsPanel" parent="." instance=ExtResource("4_4b02w")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="Pause/MarginContainer/TextureRect/MarginContainer/VBoxContainer/Reprendre" to="." method="_on_reprendre_pressed"]
+[connection signal="pressed" from="Pause/MarginContainer/TextureRect/MarginContainer/VBoxContainer/Sauvegarder" to="." method="_on_sauvegarder_pressed"]
+[connection signal="pressed" from="Pause/MarginContainer/TextureRect/MarginContainer/VBoxContainer/Charger" to="." method="_on_charger_pressed"]
+[connection signal="pressed" from="Pause/MarginContainer/TextureRect/MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Pause/MarginContainer/TextureRect/MarginContainer/VBoxContainer/Quitter" to="." method="_on_quitter_pressed"]
+[connection signal="back_button_pressed" from="OptionsPanel" to="." method="_on_options_panel_back_button_pressed"]

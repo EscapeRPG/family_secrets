@@ -9,11 +9,17 @@ var styleBoxTexture: StyleBoxTexture = StyleBoxTexture.new()
 
 func _process(_delta) -> void:
 	#Check if the player has found any document
-	if Globals.doc1: %Doc1.text = "Journal de William - p.1"
+	if Globals.data["doc1"]:
+		%Doc1.text = "Journal de William - p.1"
+		%Doc1.disabled = false
 	else: %Doc1.disabled = true
-	if Globals.doc2: %Doc2.text = "Journal de William - p.2"
+	if Globals.data["doc2"]:
+		%Doc2.text = "Journal de William - p.2"
+		%Doc2.disabled = false
 	else: %Doc2.disabled = true
-	if Globals.doc3: %Doc3.text = "Journal de William - p.3"
+	if Globals.data["doc3"]:
+		%Doc3.text = "Journal de William - p.3"
+		%Doc3.disabled = false
 	else: %Doc3.disabled = true
 	
 	if Input.is_action_just_pressed("navigation"):
@@ -43,6 +49,10 @@ func _on_nav_pleine_bouton_pressed() -> void:
 func _on_nav_window_bouton_pressed() -> void:
 	%Notes.visible = false
 	%Documents.visible = false
+	%NotesBouton.add_theme_color_override("icon_normal_color", Color("#ee9c31"))
+	%DocsBouton.add_theme_color_override("icon_normal_color", Color("#ee9c31"))
+	%InventaireBouton.add_theme_color_override("icon_normal_color", Color("#ee9c31"))
+	%MapBouton.add_theme_color_override("icon_normal_color", Color("#ee9c31"))
 	var tween = get_tree().create_tween()
 	tween.tween_property(nav_window, "position", Vector2(103, 360), 0.4)
 	unfocus()
@@ -77,22 +87,19 @@ func _on_docs_bouton_pressed() -> void:
 func _on_inventaire_bouton_pressed() -> void:
 	pass # Replace with function body.
 
-
 func _on_map_bouton_pressed() -> void:
 	pass # Replace with function body.
 
-
 func _on_doc_1_pressed() -> void:
-	if Globals.doc1:
+	if Globals.data["doc1"]:
 		%Label.text = tr("JOURNAL_1")
-		
 		styleBoxTexture.texture = preload("res://Assets/UI/feuille.png")
 		%Lecture.add_theme_stylebox_override("panel", styleBoxTexture)
 
 func _on_doc_2_pressed() -> void:
-	if Globals.doc2:
+	if Globals.data["doc2"]:
 		%Label.text = tr("JOURNAL_2")
 
 func _on_doc_3_pressed() -> void:
-	if Globals.doc3:
+	if Globals.data["doc3"]:
 		%Label.text = tr("JOURNAL_3")

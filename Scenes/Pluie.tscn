@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://c21k1ayfoxxhf"]
+
+[ext_resource type="Texture2D" uid="uid://vajk6jssc8qa" path="res://Assets/Pluie.png" id="1_lq5dr"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tboun"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, -200, 0)
+emission_shape = 3
+emission_box_extents = Vector3(400, 1, 1)
+gravity = Vector3(0, 1000, 0)
+scale_min = 0.2
+color = Color(0.705882, 0.894118, 1, 0.45098)
+hue_variation_min = -2.23517e-08
+hue_variation_max = -2.23517e-08
+
+[node name="Pluie" type="Node2D"]
+
+[node name="Pluie" type="GPUParticles2D" parent="."]
+position = Vector2(315, 86)
+rotation = -0.297984
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_tboun")
+texture = ExtResource("1_lq5dr")
+preprocess = 5.0
+local_coords = true

@@ -1,0 +1,134 @@
+[gd_scene load_steps=18 format=3 uid="uid://brdffxpsbvrui"]
+
+[ext_resource type="Script" path="res://Scripts/introduction.gd" id="1_jkbb7"]
+[ext_resource type="Texture2D" uid="uid://buo6ee55f3fs7" path="res://Assets/Intro/Gouttes vitres.png" id="2_1c8e4"]
+[ext_resource type="Texture2D" uid="uid://dpkifkjin8n2j" path="res://Assets/Intro/Fond.png" id="2_vif4a"]
+[ext_resource type="Texture2D" uid="uid://cq6nx1o8rmiqg" path="res://Assets/Intro/Visuel.png" id="3_77t6f"]
+[ext_resource type="Texture2D" uid="uid://cskgcermf50fw" path="res://Assets/Intro/Collines Fond.png" id="3_h04tj"]
+[ext_resource type="Texture2D" uid="uid://cqqpfkhkxeqsc" path="res://Assets/Intro/Bandes ciné.png" id="4_goatg"]
+[ext_resource type="Texture2D" uid="uid://bs8q0pwycmfr2" path="res://Assets/Intro/Collines.png" id="4_ykbj0"]
+[ext_resource type="Texture2D" uid="uid://drf2vnjxgc83a" path="res://Assets/Intro/Collines Front.png" id="5_gik0q"]
+[ext_resource type="Texture2D" uid="uid://dgpl6a8a5b4wc" path="res://Assets/Intro/Abres Front.png" id="6_16phq"]
+[ext_resource type="PackedScene" uid="uid://c21k1ayfoxxhf" path="res://Scenes/Pluie.tscn" id="7_awpkb"]
+[ext_resource type="PackedScene" uid="uid://dd10keab8jalu" path="res://Scenes/scene_transition.tscn" id="11_8y5dq"]
+[ext_resource type="PackedScene" uid="uid://dlkiqnpdnmdiv" path="res://Scenes/texte_cinematique.tscn" id="12_m8o4b"]
+[ext_resource type="PackedScene" uid="uid://dyyex5wc1fuy7" path="res://Scenes/dialogues_cinematiques.tscn" id="13_yq7vs"]
+
+[sub_resource type="Shader" id="Shader_goxiq"]
+code = "shader_type canvas_item;
+
+uniform vec4 base_color: source_color;
+uniform sampler2D noise: filter_nearest, repeat_enable;
+
+void fragment() {
+	vec3 fog_color_1 = texture(noise, vec2(UV.x / -1.0 + TIME / 10.0, UV.y / 1.1 - TIME / 20.0)).rgb;
+	vec3 fog_color_2 = texture(noise, vec2(UV.x / -1.3 + TIME / 30.0, UV.y / 0.7 - TIME / 60.0)).rgb;
+	vec3 fog_color_3 = texture(noise, vec2(UV.x / -0.3 + TIME / 50.0, UV.y / 1.2 - TIME / 40.0)).rgb;
+	vec3 fog_color = mix(fog_color_3, mix(fog_color_1, fog_color_2, 0.8), 1.0);
+	COLOR.a *= base_color.a * fog_color.r * 1.5;
+	COLOR.rgb = fog_color * base_color.rgb;
+}"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xhuu7"]
+seed = 2
+frequency = 0.0285
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_41r6q"]
+width = 640
+height = 360
+seamless = true
+seamless_blend_skirt = 0.665
+noise = SubResource("FastNoiseLite_xhuu7")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dr1na"]
+shader = SubResource("Shader_goxiq")
+shader_parameter/base_color = Color(0.654167, 0.801829, 0.936222, 0.631373)
+shader_parameter/noise = SubResource("NoiseTexture2D_41r6q")
+
+[node name="Introduction" type="Node2D"]
+script = ExtResource("1_jkbb7")
+
+[node name="Cinematique" type="Node2D" parent="."]
+visible = false
+
+[node name="Ciel" type="Sprite2D" parent="Cinematique"]
+position = Vector2(320, 180)
+texture = ExtResource("2_vif4a")
+
+[node name="Fond" type="Node2D" parent="Cinematique"]
+
+[node name="CollinesFond" type="Sprite2D" parent="Cinematique/Fond"]
+position = Vector2(-640, 75)
+texture = ExtResource("3_h04tj")
+centered = false
+
+[node name="Collines" type="Sprite2D" parent="Cinematique/Fond"]
+position = Vector2(-1572, 96)
+texture = ExtResource("4_ykbj0")
+centered = false
+
+[node name="CollinesFront" type="Sprite2D" parent="Cinematique/Fond"]
+position = Vector2(-2684, 54)
+texture = ExtResource("5_gik0q")
+centered = false
+
+[node name="AbresFront" type="Sprite2D" parent="Cinematique/Fond"]
+position = Vector2(-3587, 0)
+texture = ExtResource("6_16phq")
+centered = false
+
+[node name="Pluie" parent="Cinematique" instance=ExtResource("7_awpkb")]
+
+[node name="Front" type="Node2D" parent="Cinematique"]
+
+[node name="GouttesVitres" type="TextureRect" parent="Cinematique/Front"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_dr1na")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_1c8e4")
+stretch_mode = 4
+
+[node name="Visuel" type="Sprite2D" parent="Cinematique/Front"]
+position = Vector2(320, 180)
+texture = ExtResource("3_77t6f")
+
+[node name="BandesCiné" type="Sprite2D" parent="Cinematique"]
+position = Vector2(320, 180)
+texture = ExtResource("4_goatg")
+
+[node name="Tremblements" type="Timer" parent="Cinematique"]
+autostart = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SceneTransition" parent="Control" instance=ExtResource("11_8y5dq")]
+layout_mode = 1
+
+[node name="TexteCinematique" parent="Control" instance=ExtResource("12_m8o4b")]
+visible = false
+layout_mode = 1
+nombre_dialogues = Array[String](["intro", "intro2"])
+
+[node name="DialoguesCinematiques" parent="Control" instance=ExtResource("13_yq7vs")]
+layout_mode = 1
+character_dialogue = Array[String](["intro3", "intro4", "intro5", "intro6", "intro7"])
+
+[connection signal="timeout" from="Cinematique/Tremblements" to="." method="_on_tremblements_timeout"]
+[connection signal="dialogue_finished" from="Control/TexteCinematique" to="." method="_on_texte_cinematique_dialogue_finished"]
+[connection signal="dialogue_finished" from="Control/DialoguesCinematiques" to="." method="_on_dialogues_cinematiques_dialogue_finished"]

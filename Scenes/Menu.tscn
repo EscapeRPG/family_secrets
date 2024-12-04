@@ -1,0 +1,217 @@
+[gd_scene load_steps=18 format=3 uid="uid://be8y8b537y8jh"]
+
+[ext_resource type="Theme" uid="uid://doou4cxtw0g4t" path="res://Themes/menu.tres" id="1_lerd6"]
+[ext_resource type="Script" path="res://Scripts/menu.gd" id="2_uj740"]
+[ext_resource type="Texture2D" uid="uid://ddgpokm0545b" path="res://Assets/Menu/secrets.png" id="3_j1t03"]
+[ext_resource type="Shader" path="res://Shaders/fog.gdshader" id="4_k1mun"]
+[ext_resource type="Texture2D" uid="uid://ifah2jiv8raq" path="res://Assets/Menu/front.png" id="5_fhmgx"]
+[ext_resource type="Shader" path="res://Shaders/fogfront.gdshader" id="6_fm2uq"]
+[ext_resource type="FontFile" uid="uid://d381cdvrm12wl" path="res://Fonts/OldNewspaperTypes.ttf" id="7_uyb4e"]
+[ext_resource type="PackedScene" uid="uid://bbihrem38gbs0" path="res://Scenes/OptionsPanel.tscn" id="8_yvf84"]
+[ext_resource type="PackedScene" uid="uid://dd10keab8jalu" path="res://Scenes/scene_transition.tscn" id="9_xpalr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5udoj"]
+shader = ExtResource("4_k1mun")
+shader_parameter/base_color = Color(0.32549, 0.835294, 0.862745, 0.439216)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_scifs"]
+seed = 3
+frequency = 0.0316
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ynpuf"]
+width = 640
+height = 236
+seamless = true
+normalize = false
+noise = SubResource("FastNoiseLite_scifs")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eg883"]
+shader = ExtResource("6_fm2uq")
+shader_parameter/base_color = Color(0.580392, 0.866667, 0.894118, 0.486275)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_um4hh"]
+seed = 4
+frequency = 0.0242
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_k1djo"]
+width = 640
+height = 236
+seamless = true
+seamless_blend_skirt = 0.73
+noise = SubResource("FastNoiseLite_um4hh")
+
+[sub_resource type="Gradient" id="Gradient_2qk7u"]
+offsets = PackedFloat32Array(0.0416667, 0.5, 0.958333)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 24
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_uspki"]
+gradient = SubResource("Gradient_2qk7u")
+width = 640
+
+[node name="Menu" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_lerd6")
+script = ExtResource("2_uj740")
+
+[node name="Fond" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_j1t03")
+
+[node name="Fog" type="TextureRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_5udoj")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -118.0
+offset_right = 320.0
+offset_bottom = 118.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_ynpuf")
+
+[node name="Front" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_fhmgx")
+
+[node name="Fog2" type="TextureRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_eg883")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -118.0
+offset_right = 320.0
+offset_bottom = 118.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("NoiseTexture2D_k1djo")
+
+[node name="Gradient" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_uspki")
+
+[node name="Titre" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 9.0
+offset_bottom = 54.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("7_uyb4e")
+theme_override_font_sizes/font_size = 32
+text = "SECRETS FAMILIAUX"
+horizontal_alignment = 1
+
+[node name="Next" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -89.0
+offset_top = -22.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("7_uyb4e")
+theme_override_font_sizes/font_size = 8
+text = "APPUYEZ SUR E"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="Boutons" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -42.0
+offset_top = -47.0
+offset_right = 43.0
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="Continuer" type="Button" parent="Boutons"]
+layout_mode = 2
+disabled = true
+text = "REPRENDRE"
+
+[node name="New" type="Button" parent="Boutons"]
+layout_mode = 2
+text = "NOUVELLE PARTIE"
+
+[node name="Options" type="Button" parent="Boutons"]
+layout_mode = 2
+text = "OPTIONS"
+
+[node name="Quit" type="Button" parent="Boutons"]
+layout_mode = 2
+text = "QUITTER"
+
+[node name="OptionsPanel" parent="." instance=ExtResource("8_yvf84")]
+visible = false
+layout_mode = 1
+
+[node name="SceneTransition" parent="." instance=ExtResource("9_xpalr")]
+layout_mode = 1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="Boutons/Continuer" to="." method="_on_continuer_pressed"]
+[connection signal="pressed" from="Boutons/New" to="." method="_on_new_pressed"]
+[connection signal="pressed" from="Boutons/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Boutons/Quit" to="." method="_on_quit_pressed"]
+[connection signal="back_button_pressed" from="OptionsPanel" to="." method="_on_options_panel_back_button_pressed"]

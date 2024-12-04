@@ -1,12 +1,13 @@
-[gd_scene load_steps=50 format=3 uid="uid://co07lt5af6ilr"]
+[gd_scene load_steps=53 format=3 uid="uid://co07lt5af6ilr"]
 
 [ext_resource type="Script" path="res://Scripts/bastian.gd" id="1_5t3wm"]
-[ext_resource type="Texture2D" uid="uid://c667r2ewfxp3g" path="res://Assets/testbastian.png" id="2_g8gqx"]
+[ext_resource type="Texture2D" uid="uid://c667r2ewfxp3g" path="res://Assets/Characters/testbastian.png" id="2_g8gqx"]
 [ext_resource type="Texture2D" uid="uid://dui5n5ny01qhx" path="res://Assets/indice.png" id="3_o6i7s"]
+[ext_resource type="Texture2D" uid="uid://bngqeqsmraxph" path="res://Assets/Characters/flashlight.png" id="4_4ufp5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uem8y"]
 radius = 7.0
-height = 48.0
+height = 36.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rjkip"]
 atlas = ExtResource("2_g8gqx")
@@ -354,6 +355,12 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_a1q4x"]
+light_mode = 1
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_jhdmw"]
+polygon = PackedVector2Array(-2, 1, -10, 3, -10, 8, -2, 12, 5, 12, 13, 8, 13, 3, 5, 1)
+
 [node name="Bastian" type="CharacterBody2D"]
 texture_filter = 1
 position = Vector2(317, 227)
@@ -365,14 +372,36 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_uem8y")
 
 [node name="Animation" type="AnimatedSprite2D" parent="."]
+light_mask = 2
 texture_filter = 1
 position = Vector2(0, -41.5)
 sprite_frames = SubResource("SpriteFrames_22qg7")
-animation = &"idled"
+animation = &"walkback"
 autoplay = "idleg"
 
 [node name="Indice" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 visible = false
+z_index = 10
+material = SubResource("CanvasItemMaterial_a1q4x")
 position = Vector2(21, -104)
 texture = ExtResource("3_o6i7s")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(0, 4)
+energy = 3.0
+shadow_enabled = true
+texture = ExtResource("4_4ufp5")
+offset = Vector2(-95, -50)
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(0, 4)
+energy = 3.0
+range_item_cull_mask = 2
+texture = ExtResource("4_4ufp5")
+offset = Vector2(-95, -50)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_jhdmw")

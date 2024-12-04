@@ -1,14 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://ywm804xlns7c"]
+[gd_scene load_steps=8 format=3 uid="uid://ywm804xlns7c"]
 
 [ext_resource type="Theme" uid="uid://bo7i1yk8adk1i" path="res://Themes/nav_buttons.tres" id="1_eknx2"]
 [ext_resource type="Texture2D" uid="uid://8cx42l70s6f0" path="res://Assets/Characters/portrait.png" id="1_fd2dj"]
 [ext_resource type="Texture2D" uid="uid://by3kuoy0423sm" path="res://Assets/UI/bulle.png" id="2_jns46"]
 [ext_resource type="Script" path="res://Scripts/dialogues.gd" id="2_yyds0"]
+[ext_resource type="Texture2D" uid="uid://dvnxmgdcqwo8c" path="res://Assets/Characters/Bastian.png" id="4_ccem4"]
 [ext_resource type="Script" path="res://Scripts/dialogue.gd" id="4_vxrfd"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a350t"]
 
 [node name="Dialogues" type="Control"]
+process_mode = 3
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,6 +20,15 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_eknx2")
 script = ExtResource("2_yyds0")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.6)
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -39,6 +51,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="PortraitPNJ" type="TextureRect" parent="PanelContainer/MarginContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -47,10 +60,11 @@ stretch_mode = 2
 
 [node name="PortraitBastian" type="TextureRect" parent="PanelContainer/MarginContainer"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-texture = ExtResource("1_fd2dj")
+texture = ExtResource("4_ccem4")
 stretch_mode = 2
 
 [node name="Bulle" type="TextureRect" parent="PanelContainer/MarginContainer"]
@@ -79,13 +93,27 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 12
-text = "Bastian"
 script = ExtResource("4_vxrfd")
 
-[node name="Dialogue" type="RichTextLabel" parent="PanelContainer/MarginContainer/Bulle/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/Bulle/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Dialogue" type="RichTextLabel" parent="PanelContainer/MarginContainer/Bulle/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 bbcode_enabled = true
 text = "Placeholder text"
 fit_content = true
 visible_characters = 0
 visible_ratio = 0.0
+
+[node name="Validation" type="Label" parent="PanelContainer/MarginContainer/Bulle/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "v"
+horizontal_alignment = 1
+vertical_alignment = 2
